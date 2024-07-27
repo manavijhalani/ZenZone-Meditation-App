@@ -1,37 +1,20 @@
-import { Tabs } from 'expo-router';
-import React from 'react';
+import {Slot,Tabs} from 'expo-router';
+import Colors from '@/constants/Colors';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { Feather } from '@expo/vector-icons';
 
-import { TabBarIcon } from '@/components/navigation/TabBarIcon';
-import { Colors } from '@/constants/Colors';
-import { useColorScheme } from '@/hooks/useColorScheme';
-
-export default function TabLayout() {
-  const colorScheme = useColorScheme();
-
-  return (
-    <Tabs
-      screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        headerShown: false,
-      }}>
-      <Tabs.Screen
-        name="index"
-        options={{
-          title: 'Home',
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'home' : 'home-outline'} color={color} />
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name="explore"
-        options={{
-          title: 'Explore',
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'code-slash' : 'code-slash-outline'} color={color} />
-          ),
-        }}
-      />
+export default function TabsLayout() {
+  return(
+    <Tabs screenOptions=
+    {{headerShown:false, 
+        tabBarActiveTintColor:Colors.primary,
+    }}>
+        <Tabs.Screen name="nature-meditate" options={{tabBarLabel:'Meditate', tabBarIcon:({color})=>(<MaterialCommunityIcons name="flower-tulip" size={24} color="black" />)
+    
+    }}/>
+    <Tabs.Screen name="affirmations" options={{tabBarLabel:'Affirmations', tabBarIcon:({color})=>(<Feather name="book-open" size={24} color="black" />)
+    
+}}/>
     </Tabs>
   );
 }
